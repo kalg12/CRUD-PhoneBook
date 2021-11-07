@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
 *{
     margin: 0px;
     padding: 0px;
 }
 
 body{
-    
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 nav ul{
@@ -25,11 +27,42 @@ nav ul{
 }
 
 .navtitle{
-    font-size: 2rem;
+    font-size: 1.2rem;
     text-align: center;
     color: #ffffff;
     margin: 30px; 
 }
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #ffffff;
+    width: 100%;
+    height: 100%;
+    margin-top: 10px;
+}
+
+.containertitle{
+    font-size: 2rem;
+    text-align: center;
+    color: #da4d4d;
+    font-family: 'Lobster', cursive;
+}
+
+.paragraptitle{
+    font-size: 1.2rem;
+    text-align: center;
+    color: #a1a1a1;
+    font-family: 'Lobster', cursive;
+    margin: 20px 10px 20px 10px;
+}
+
+.formphonebook{
+    margin: 40px 80px 40px 80px;
+}
+
 
 @media screen and (min-width: 600px) {
     nav ul{
