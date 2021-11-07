@@ -12,12 +12,11 @@ body{
 nav ul{
     font-family: 'Roboto', sans-serif;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     background-color: #000000;
     height: 100px;
     padding: 0px 40px 0px 40px;
-        
 }
 
 .imglogo{
@@ -59,6 +58,10 @@ nav ul{
     margin: 20px 10px 20px 10px;
 }
 
+.formcontainer{
+    margin: 0px 100px 0px 100px;
+}
+
 .formphonebook{
     margin: 10px 40px 10px 40px;
 }
@@ -70,9 +73,10 @@ label{
 .savebutton{
     margin: 20px 0px 20px 0;
     border-radius: 5px;
-    height: 40px;
-    width: 90px;
+    height: 50px;
+    width: 120px;
     font-size: 1rem;
+    font-style: italic;
     color: #ffffff;
     background-color: #59C4A1;
     border: 1px solid #59C4A1;
@@ -86,10 +90,48 @@ label{
 
 }
 
+footer ul{
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    background-color: #000000;
+    height: 100px;
+    margin-bottom: 0px !important;
+}
+
+.footerapptitle{
+    margin-top: 5px;
+    font-family: 'Lobster', cursive;
+    color:#da4d4d;
+}
+
+.developmentby{
+    display: flex;
+    color: white;
+    font-size: 1rem;
+}
+
 @media screen and (min-width: 600px) {
     nav ul{
         display: flex;
         justify-content: space-between;
+    }
+
+    .formcontainer{
+        margin: 0px 50px 0px 50px;
+    }
+
+  }
+
+
+@media screen and (max-width: 600px) {
+    nav ul{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .formcontainer{
+        margin: 0px 10px 0px 10px;
     }
 
   }
