@@ -60,9 +60,24 @@ nav ul{
 }
 
 .formphonebook{
-    margin: 40px 80px 40px 80px;
+    margin: 10px 80px 10px 80px;
 }
 
+label{
+    margin-top: 20px;
+}
+
+.savebutton{
+    
+}
+
+.editbutton{
+
+}
+
+.deletebutton{
+
+}
 
 @media screen and (min-width: 600px) {
     nav ul{
