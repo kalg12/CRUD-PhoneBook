@@ -83,11 +83,27 @@ label{
 }
 
 .editbutton{
-
+    margin: 20px 0px 20px 0;
+    border-radius: 5px;
+    height: 50px;
+    width: 120px;
+    font-size: 1rem;
+    font-style: italic;
+    color: #ffffff;
+    background-color: #ffa600;
+    border: 1px solid #ffa600;
 }
 
 .deletebutton{
-
+    margin: 20px 0px 20px 0;
+    border-radius: 5px;
+    height: 50px;
+    width: 120px;
+    font-size: 1rem;
+    font-style: italic;
+    color: #ffffff;
+    background-color: #f34b4b;
+    border: 1px solid #f34b4b;
 }
 
 footer ul{
