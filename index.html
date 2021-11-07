@@ -23,15 +23,23 @@
         <p class="paragraptitle">Con esta herramientas podrás tener el al alcance de tus manos a las personas que te rodean 📱</p>
     </div>
 
-    <div class="formphonebook">
-        <label for="name" class="form-label">Nombre</label>
-        <input type="text" class="form-control" id="name">
-        <label for="lastname" class="form-label">Apellido</label>
-        <input type="text" class="form-control" id="lastname">
-        <label for="phone" class="form-label">Teléfono</label>
-        <input type="tel" class="form-control" id="phone">
-        <button class="savebutton">Guardar</button>
-    </div>
+    <form action="">
+
+        <div class="formphonebook">
+            <label for="name" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="name">
+            <label for="lastname" class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="lastname">
+            <label for="bussines" class="form-label">Empresa</label>
+            <input type="text" class="form-control" id="bussines">
+            <label for="phone" class="form-label">Teléfono</label>
+            <input type="tel" class="form-control" id="phone">
+            <label for="email" class="form-label">Correo electrónico</label>
+            <input type="email" class="form-control" id="email">
+            <button type="submit" class="savebutton" onclick="saveButton();" value="Clic para ver el mensaje de alerta">Guardar</button>
+        </div>
+
+    </form>
 
 
     <script src="./app.js"></script>
