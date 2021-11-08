@@ -53,7 +53,7 @@ nav ul{
 .paragraptitle{
     font-size: 1.2rem;
     text-align: center;
-    color: #a1a1a1;
+    color: #808080;
     font-family: 'Lobster', cursive;
     margin: 20px 10px 20px 10px;
 }
@@ -155,5 +155,4 @@ footer ul{
     .formcontainer{
         margin: 0px 10px 0px 10px;
     }
-
   }
