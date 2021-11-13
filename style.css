@@ -48,6 +48,7 @@ nav ul{
     text-align: center;
     color: #da4d4d;
     font-family: 'Lobster', cursive;
+    --animate-duration: 2s;
 }
 
 .paragraptitle{
