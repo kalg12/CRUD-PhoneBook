@@ -7,13 +7,49 @@ function addElement(){
     var phone = document.getElementById("phone").value;
     var comments = document.getElementById("comments").value;
 
-    localStorage.setItem("name", name);
-    localStorage.setItem("lastname", lastname);
-    localStorage.setItem("company", company);
-    localStorage.setItem("email", email);
-    localStorage.setItem("phone", phone);
-    localStorage.setItem("comments", comments);
-       
+    var contact = {
+        name: name,
+        lastname: lastname,
+        company: company,
+        email: email,
+        phone: phone,
+        comments: comments
+    };
+    
+    localStorage.setItem("data",JSON.stringify(contact));
+
+    window.location.reload();
+
+    
+}
+
+window.onload = function(){
+    var contact = localStorage.getItem("data");
+    
+    if(contact != null){
+        var contact = JSON.parse(contact);
+
+        var templateTR = `<tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Empresa</th>
+                            <th scope="col">Teléfono</th>
+                            <th scope="col">Correo electrónico</th>
+                            <th scope="col">Comentarios</th>
+                        </tr>
+    
+                        <tr>
+                            <td>${contact.name}</td>
+                            <td>${contact.lastname}</td>
+                            <td>${contact.company}</td>
+                            <td>${contact.email}</td>
+                            <td>${contact.phone}</td>
+                            <td>${contact.comments}</td>
+                        </tr>`;
+
+        var tbodyPersona = document.getElementById("tbodyPersona");
+        tbodyPersona.innerHTML = templateTR;
+    }
 }
 
 function showElement(){
