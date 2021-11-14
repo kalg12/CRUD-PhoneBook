@@ -20,6 +20,7 @@ function addElement(){
 
     window.location.reload();
 
+    alert("Registro guardado");
     
 }
 
@@ -36,6 +37,8 @@ window.onload = function(){
                             <th scope="col">Teléfono</th>
                             <th scope="col">Correo electrónico</th>
                             <th scope="col">Comentarios</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
                         </tr>
     
                         <tr>
@@ -45,6 +48,8 @@ window.onload = function(){
                             <td>${contact.email}</td>
                             <td>${contact.phone}</td>
                             <td>${contact.comments}</td>
+                            <td><button type="button" class="btn btn-warning" onclick="showElement()">Editar</button></td>
+                            <td><button type="button" class="btn btn-danger" onclick="deleteElement()">Eliminar</button></td>
                         </tr>`;
 
         var tbodyPersona = document.getElementById("tbodyPersona");
@@ -53,7 +58,24 @@ window.onload = function(){
 }
 
 function showElement(){
-    var name = localStorage.getItem("name");
+
+    var name = document.getElementById("name");
+    var lastname = document.getElementById("lastname");
+    var company = document.getElementById("company");
+    var email = document.getElementById("email");
+    var phone = document.getElementById("phone");
+    var comments = document.getElementById("comments");
+
+    name.value = localStorage.getItem("name");
+    lastname.value = localStorage.getItem("lastname");
+    company.value = localStorage.getItem("company");
+    email.value = localStorage.getItem("email");
+    phone.value = localStorage.getItem("phone");
+    comments.value = localStorage.getItem("comments");
+}
+
+
+    /* var name = localStorage.getItem("name");
     var lastname = localStorage.getItem("lastname");
     var company = localStorage.getItem("company");
     var email = localStorage.getItem("email");
@@ -79,23 +101,13 @@ function showElement(){
         document.getElementById("comments").value = comments;
     }else{
         alert("No hay datos por mostrar");
-    }
+    } */
         
-}
+
 
 function deleteElement(){
-
-    if(localStorage.getItem("name") != null || localStorage.getItem("lastname") != null || localStorage.getItem("company") != null || localStorage.getItem("email") != null || localStorage.getItem("phone") != null || localStorage.getItem("comments") != null){
-
-    localStorage.removeItem("name");
-    localStorage.removeItem("lastname");
-    localStorage.removeItem("company");
-    localStorage.removeItem("email");
-    localStorage.removeItem("phone");
-    localStorage.removeItem("comments");
-    
-    alert("Datos eliminados");
-    }else{
-        alert("No hay datos por borrar");
+    if(confirm("¿Deseas eliminar este registro?")){
+        localStorage.removeItem("data");
+        window.location.reload();
     }
 }
