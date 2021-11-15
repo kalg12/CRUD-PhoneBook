@@ -21,7 +21,7 @@ function addElement(){
     window.location.reload();
 
     alert("Registro guardado");
-    
+
 }
 
 window.onload = function(){
