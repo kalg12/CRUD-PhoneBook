@@ -1,5 +1,9 @@
 function addElement(){
 
+    if (document.getElementById("name").value == "" || document.getElementById("lastname").value == "" || document.getElementById("company").value == "" || document.getElementById("phone").value == "" || document.getElementById("email").value == "" || document.getElementById("comments").value == "") {
+        alert("No puedes agregar un registro vacio");
+    }
+
     var name = document.getElementById("name").value;
     var lastname = document.getElementById("lastname").value;
     var company = document.getElementById("company").value;
