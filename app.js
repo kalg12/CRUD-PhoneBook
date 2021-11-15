@@ -1,26 +1,31 @@
 function addElement(){
 
-    var name = document.getElementById("name").value;
-    var lastname = document.getElementById("lastname").value;
-    var company = document.getElementById("company").value;
-    var phone = document.getElementById("phone").value;
-    var email = document.getElementById("email").value;    
-    var comments = document.getElementById("comments").value;
+    if (document.getElementById("name").value == "" || document.getElementById("lastname").value == "") {
+        alert("No se puede dejar el campo nombre y/o apellido vacío 😩");
+    }else{
 
-    var contact = {
-        name: name,
-        lastname: lastname,
-        company: company,
-        phone: phone,
-        email: email,       
-        comments: comments
-    };
-    
-    localStorage.setItem("data",JSON.stringify(contact));
+        var name = document.getElementById("name").value;
+        var lastname = document.getElementById("lastname").value;
+        var company = document.getElementById("company").value;
+        var phone = document.getElementById("phone").value;
+        var email = document.getElementById("email").value;    
+        var comments = document.getElementById("comments").value;
 
-    window.location.reload();
+        var contact = {
+            name: name,
+            lastname: lastname,
+            company: company,
+            phone: phone,
+            email: email,       
+            comments: comments
+        };
+        
+        localStorage.setItem("data",JSON.stringify(contact));
 
-    alert("Registro guardado");
+        window.location.reload();
+
+        alert("Registro guardado");
+    }
 
 }
 
