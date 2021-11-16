@@ -1,81 +1,152 @@
 function addElement(){
 
-    if (document.getElementById("name").value == "" || document.getElementById("lastname").value == "" || document.getElementById("company").value == "" || document.getElementById("phone").value == "" || document.getElementById("email").value == "" || document.getElementById("comments").value == "") {
-        alert("No puedes agregar un registro vacio");
+    var localStorageKeyName = 'data';
+
+    if (document.getElementById("name").value == "" || document.getElementById("lastname").value == "") {
+        alert("No se puede dejar el campo nombre y/o apellido vacío 😩");
+    }else{
+
+        var name = document.getElementById("name").value;
+        var lastname = document.getElementById("lastname").value;
+        var company = document.getElementById("company").value;
+        var phone = document.getElementById("phone").value;
+        var email = document.getElementById("email").value;    
+        var comments = document.getElementById("comments").value;
+
+        var id = document.getElementById("hdnid").value;
+
+        if (id !== "") {
+            var contact = {
+                id: id,
+                name: name,
+                lastname: lastname,
+                company: company,
+                phone: phone,
+                email: email,       
+                comments: comments
+            }
+        } else {
+            var contact = {
+                id: uuidv4(),
+                name: name,
+                lastname: lastname,
+                company: company,
+                phone: phone,
+                email: email,       
+                comments: comments
+            }
+        }
     }
+    guardar(contact);
+}
 
-    var name = document.getElementById("name").value;
-    var lastname = document.getElementById("lastname").value;
-    var company = document.getElementById("company").value;
-    var phone = document.getElementById("phone").value;
-    var email = document.getElementById("email").value;    
-    var comments = document.getElementById("comments").value;
-
-    var contact = {
-        name: name,
-        lastname: lastname,
-        company: company,
-        phone: phone,
-        email: email,       
-        comments: comments
-    };
+function guardar(obj){
     
-    localStorage.setItem("data",JSON.stringify(contact));
+    var localStorageKeyName = 'data';
+    var data = JSON.parse(localStorage.getItem(localStorageKeyName));
+    if (data == null) {
+        data = [];
+    }
+    
+    data.push(obj);
 
-    window.location.reload();
+    localStorage.setItem(localStorageKeyName, JSON.stringify(data));
 
-    alert("Registro guardado");
+    location.reload();
 
 }
 
 window.onload = function(){
-    var contact = localStorage.getItem("data");
+    var data = [],
+    dataInLocalStorage = localStorage.getItem("data"),
+    gridBody = document.querySelector("#grid tbody");
     
-    if(contact != null){
-        var contact = JSON.parse(contact);
-
-        var templateTR = `<tr>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Apellido</th>
-                            <th scope="col">Empresa</th>
-                            <th scope="col">Teléfono</th>
-                            <th scope="col">Correo electrónico</th>
-                            <th scope="col">Comentarios</th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                        </tr>
-    
-                        <tr>
-                            <td>${contact.name}</td>
-                            <td>${contact.lastname}</td>
-                            <td>${contact.company}</td>
-                            <td>${contact.phone}</td>
-                            <td>${contact.email}</td>
-                            <td>${contact.comments}</td>
-                            <td><button type="button" class="btn btn-warning" onclick="showElement()">Editar</button></td>
-                            <td><button type="button" class="btn btn-danger" onclick="deleteElement()">Eliminar</button></td>
-                        </tr>`;
-
-        var tbodyPersona = document.getElementById("tbodyPersona");
-        tbodyPersona.innerHTML = templateTR;
+    if(dataInLocalStorage !== null){
+        data = JSON.parse(dataInLocalStorage);
     }
+
+    gridBody.innerHTML = '';
+
+    data.forEach(function (x, i) {                
+
+        var tr = document.createElement("tr"),
+        tdName = document.createElement("td"),
+        tdLastname = document.createElement("td"),
+        tdCompany = document.createElement("td"),
+        tdPhone = document.createElement("td"),
+        tdEmail = document.createElement("td"),
+        tdComments = document.createElement("td"),
+        tdRemove = document.createElement("td"),
+        btnRemove = document.createElement("button");
+        tdEdit = document.createElement("td"),
+        btnEdit = document.createElement("button");
+
+        tdName.innerHTML = x.name;
+        tdLastname.innerHTML = x.lastname;
+        tdCompany.innerHTML = x.company;
+        tdPhone.innerHTML = x.phone;
+        tdEmail.innerHTML = x.email;
+        tdComments.innerHTML = x.comments;
+
+        btnRemove.textContent = 'Eliminar';
+        btnRemove.className = 'btn btn-xs btn-danger';
+        btnRemove.addEventListener('click', function(){
+        removeFromLocalStorage(i);
+        });
+
+        btnEdit.textContent = 'Editar';
+        btnEdit.className = 'btn btn-xs btn-warning';
+        btnEdit.addEventListener('click', function(){
+        editFromLocalStorage(i);
+        });
+
+        tdRemove.appendChild(btnRemove);
+        tdEdit.appendChild(btnEdit);
+
+        tr.appendChild(tdName);
+        tr.appendChild(tdLastname);
+        tr.appendChild(tdCompany);
+        tr.appendChild(tdPhone);
+        tr.appendChild(tdEmail);
+        tr.appendChild(tdComments);
+        tr.appendChild(tdRemove);
+        tr.appendChild(tdEdit);
+
+        gridBody.appendChild(tr);
+    });
 }
 
-function showElement(){
-    var contact = localStorage.getItem("data");
-    var contact = JSON.parse(contact);
+function removeFromLocalStorage(index){
+    var data = [],
+    dataInLocalStorage = localStorage.getItem("data");
 
-    document.getElementById("name").value = contact.name;
-    document.getElementById("lastname").value = contact.lastname;
-    document.getElementById("company").value = contact.company;
-    document.getElementById("phone").value = contact.phone;
-    document.getElementById("email").value = contact.email;
-    document.getElementById("comments").value = contact.comments;
+    data = JSON.parse(dataInLocalStorage);
+
+    data.splice(index, 1);
+
+    localStorage.setItem("data", JSON.stringify(data));
+
+    location.reload();
+
 }
 
-function deleteElement(){
-    if(confirm("¿Deseas eliminar este registro?")){
-        localStorage.removeItem("data");
-        window.location.reload();
+function editFromLocalStorage(index){
+    var data = [],
+    dataInLocalStorage = localStorage.getItem("data");
+
+    data = JSON.parse(dataInLocalStorage);
+
+    document.getElementById("name").value = data[index].name;
+    document.getElementById("lastname").value = data[index].lastname;
+    document.getElementById("company").value = data[index].company;
+    document.getElementById("phone").value = data[index].phone;
+    document.getElementById("email").value = data[index].email;
+    document.getElementById("comments").value = data[index].comments;
+    document.getElementById("hdnid").value = data[index].id;
+}
+
+function uuidv4() {
+    return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+    );
     }
-}
