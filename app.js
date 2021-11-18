@@ -1,19 +1,33 @@
-function addElement(){
+function addElement() {
 
     var localStorageKeyName = 'data';
 
     if (document.getElementById("name").value == "" || document.getElementById("lastname").value == "") {
         alert("No se puede dejar el campo nombre y/o apellido vacío 😩");
-    }else{
+    } else {
 
-        var name = document.getElementById("name").value;
-        var lastname = document.getElementById("lastname").value;
-        var company = document.getElementById("company").value;
-        var phone = document.getElementById("phone").value;
-        var email = document.getElementById("email").value;    
-        var comments = document.getElementById("comments").value;
+        var name = document
+            .getElementById("name")
+            .value;
+        var lastname = document
+            .getElementById("lastname")
+            .value;
+        var company = document
+            .getElementById("company")
+            .value;
+        var phone = document
+            .getElementById("phone")
+            .value;
+        var email = document
+            .getElementById("email")
+            .value;
+        var comments = document
+            .getElementById("comments")
+            .value;
 
-        var id = document.getElementById("hdnid").value;
+        var id = document
+            .getElementById("hdnid")
+            .value;
 
         if (id !== "") {
             var contact = {
@@ -22,7 +36,7 @@ function addElement(){
                 lastname: lastname,
                 company: company,
                 phone: phone,
-                email: email,       
+                email: email,
                 comments: comments
             }
         } else {
@@ -32,7 +46,7 @@ function addElement(){
                 lastname: lastname,
                 company: company,
                 phone: phone,
-                email: email,       
+                email: email,
                 comments: comments
             }
         }
@@ -40,24 +54,14 @@ function addElement(){
     guardar(contact);
 }
 
-function guardar(obj){
-<<<<<<< HEAD
-    
+function guardar(obj) {
+
     var localStorageKeyName = 'data';
     var data = JSON.parse(localStorage.getItem(localStorageKeyName));
     if (data == null) {
         data = [];
     }
-    
-=======
-    
-    var localStorageKeyName = 'data';
-    var data = JSON.parse(localStorage.getItem(localStorageKeyName));
-    if (data == null) {
-        data = [];
-    }
-    
->>>>>>> 3720b81f87d9babe29903e3cf0a8710103705a8f
+
     data.push(obj);
 
     localStorage.setItem(localStorageKeyName, JSON.stringify(data));
@@ -66,35 +70,28 @@ function guardar(obj){
 
 }
 
-window.onload = function(){
+window.onload = function () {
     var data = [],
-    dataInLocalStorage = localStorage.getItem("data"),
-    gridBody = document.querySelector("#grid tbody");
-    
-    if(dataInLocalStorage !== null){
+        dataInLocalStorage = localStorage.getItem("data"),
+        gridBody = document.querySelector("#grid tbody");
+
+    if (dataInLocalStorage !== null) {
         data = JSON.parse(dataInLocalStorage);
     }
 
     gridBody.innerHTML = '';
 
-    data.forEach(function (x, i) {                
+    data.forEach(function (x, i) {
 
         var tr = document.createElement("tr"),
-        tdName = document.createElement("td"),
-        tdLastname = document.createElement("td"),
-        tdCompany = document.createElement("td"),
-        tdPhone = document.createElement("td"),
-        tdEmail = document.createElement("td"),
-        tdComments = document.createElement("td"),
-<<<<<<< HEAD
-        tdRemove = document.createElement("td"),
-        btnRemove = document.createElement("button");
-        tdEdit = document.createElement("td"),
-        btnEdit = document.createElement("button");
-=======
-        tdEdit = document.createElement("td"),
-        btnRemove = document.createElement("button");
->>>>>>> 3720b81f87d9babe29903e3cf0a8710103705a8f
+            tdName = document.createElement("td"),
+            tdLastname = document.createElement("td"),
+            tdCompany = document.createElement("td"),
+            tdPhone = document.createElement("td"),
+            tdEmail = document.createElement("td"),
+            tdComments = document.createElement("td"),
+            tdEdit = document.createElement("td"),
+            btnRemove = document.createElement("button");
 
         tdName.innerHTML = x.name;
         tdLastname.innerHTML = x.lastname;
@@ -105,22 +102,11 @@ window.onload = function(){
 
         btnRemove.textContent = 'Eliminar';
         btnRemove.className = 'btn btn-xs btn-danger';
-        btnRemove.addEventListener('click', function(){
-        removeFromLocalStorage(i);
+        btnRemove.addEventListener('click', function () {
+            removeFromLocalStorage(i);
         });
 
-<<<<<<< HEAD
-        btnEdit.textContent = 'Editar';
-        btnEdit.className = 'btn btn-xs btn-warning';
-        btnEdit.addEventListener('click', function(){
-        editFromLocalStorage(i);
-        });
-
-        tdRemove.appendChild(btnRemove);
-        tdEdit.appendChild(btnEdit);
-=======
         tdEdit.appendChild(btnRemove);
->>>>>>> 3720b81f87d9babe29903e3cf0a8710103705a8f
 
         tr.appendChild(tdName);
         tr.appendChild(tdLastname);
@@ -128,20 +114,15 @@ window.onload = function(){
         tr.appendChild(tdPhone);
         tr.appendChild(tdEmail);
         tr.appendChild(tdComments);
-<<<<<<< HEAD
-        tr.appendChild(tdRemove);
-=======
->>>>>>> 3720b81f87d9babe29903e3cf0a8710103705a8f
         tr.appendChild(tdEdit);
 
         gridBody.appendChild(tr);
     });
-<<<<<<< HEAD
 }
 
-function removeFromLocalStorage(index){
+function removeFromLocalStorage(index) {
     var data = [],
-    dataInLocalStorage = localStorage.getItem("data");
+        dataInLocalStorage = localStorage.getItem("data");
 
     data = JSON.parse(dataInLocalStorage);
 
@@ -151,40 +132,11 @@ function removeFromLocalStorage(index){
 
     location.reload();
 
-}
-
-function editFromLocalStorage(index){
-=======
-}
-
-function removeFromLocalStorage(index){
->>>>>>> 3720b81f87d9babe29903e3cf0a8710103705a8f
-    var data = [],
-    dataInLocalStorage = localStorage.getItem("data");
-
-    data = JSON.parse(dataInLocalStorage);
-<<<<<<< HEAD
-
-    document.getElementById("name").value = data[index].name;
-    document.getElementById("lastname").value = data[index].lastname;
-    document.getElementById("company").value = data[index].company;
-    document.getElementById("phone").value = data[index].phone;
-    document.getElementById("email").value = data[index].email;
-    document.getElementById("comments").value = data[index].comments;
-    document.getElementById("hdnid").value = data[index].id;
-=======
-
-    data.splice(index, 1);
-
-    localStorage.setItem("data", JSON.stringify(data));
-
-    location.reload();
-
->>>>>>> 3720b81f87d9babe29903e3cf0a8710103705a8f
 }
 
 function uuidv4() {
-    return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(
+        /[018]/g,
+        c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
     );
-    }
+}
