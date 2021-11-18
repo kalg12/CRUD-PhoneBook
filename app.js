@@ -90,8 +90,10 @@ window.onload = function () {
             tdPhone = document.createElement("td"),
             tdEmail = document.createElement("td"),
             tdComments = document.createElement("td"),
-            tdEdit = document.createElement("td"),
+            tdRemove = document.createElement("td"),
             btnRemove = document.createElement("button");
+            tdEdit = document.createElement("td");
+            btnEdit = document.createElement("button");
 
         tdName.innerHTML = x.name;
         tdLastname.innerHTML = x.lastname;
@@ -100,13 +102,21 @@ window.onload = function () {
         tdEmail.innerHTML = x.email;
         tdComments.innerHTML = x.comments;
 
+        btnEdit.textContent = 'Editar';
+        btnEdit.className = 'btn btn-xs btn-warning';
+        btnEdit.addEventListener('click', function(){
+        editFromLocalStorage(i);
+        });
+
+
         btnRemove.textContent = 'Eliminar';
         btnRemove.className = 'btn btn-xs btn-danger';
         btnRemove.addEventListener('click', function () {
             removeFromLocalStorage(i);
         });
 
-        tdEdit.appendChild(btnRemove);
+        tdRemove.appendChild(btnRemove);
+        tdEdit.appendChild(btnEdit);
 
         tr.appendChild(tdName);
         tr.appendChild(tdLastname);
@@ -115,9 +125,25 @@ window.onload = function () {
         tr.appendChild(tdEmail);
         tr.appendChild(tdComments);
         tr.appendChild(tdEdit);
+        tr.appendChild(tdRemove);
 
         gridBody.appendChild(tr);
     });
+}
+
+function editFromLocalStorage(index){
+    var data = [],
+    dataInLocalStorage = localStorage.getItem("data");
+
+    data = JSON.parse(dataInLocalStorage);
+
+    document.getElementById("name").value = data[index].name;
+    document.getElementById("lastname").value = data[index].lastname;
+    document.getElementById("company").value = data[index].company;
+    document.getElementById("phone").value = data[index].phone;
+    document.getElementById("email").value = data[index].email;
+    document.getElementById("comments").value = data[index].comments;
+    document.getElementById("hdnid").value = data[index].id;
 }
 
 function removeFromLocalStorage(index) {
