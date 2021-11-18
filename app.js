@@ -105,7 +105,7 @@ window.onload = function () {
         btnEdit.textContent = 'Editar';
         btnEdit.className = 'btn btn-xs btn-warning';
         btnEdit.addEventListener('click', function(){
-        editFromLocalStorage(i);
+            editData(i);
         });
 
 
@@ -131,19 +131,21 @@ window.onload = function () {
     });
 }
 
-function editFromLocalStorage(index){
+function editData(index) {
     var data = [],
-    dataInLocalStorage = localStorage.getItem("data");
+        dataInLocalStorage = localStorage.getItem("data");
 
     data = JSON.parse(dataInLocalStorage);
 
-    document.getElementById("name").value = data[index].name;
-    document.getElementById("lastname").value = data[index].lastname;
-    document.getElementById("company").value = data[index].company;
-    document.getElementById("phone").value = data[index].phone;
-    document.getElementById("email").value = data[index].email;
-    document.getElementById("comments").value = data[index].comments;
-    document.getElementById("hdnid").value = data[index].id;
+    var contact = data[index];
+
+    document.getElementById("name").value = contact.name;
+    document.getElementById("lastname").value = contact.lastname;
+    document.getElementById("company").value = contact.company;
+    document.getElementById("phone").value = contact.phone;
+    document.getElementById("email").value = contact.email;
+    document.getElementById("comments").value = contact.comments;
+    document.getElementById("hdnid").value = contact.id;
 }
 
 function removeFromLocalStorage(index) {
