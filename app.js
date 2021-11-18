@@ -41,6 +41,7 @@ function addElement(){
 }
 
 function guardar(obj){
+<<<<<<< HEAD
     
     var localStorageKeyName = 'data';
     var data = JSON.parse(localStorage.getItem(localStorageKeyName));
@@ -48,6 +49,15 @@ function guardar(obj){
         data = [];
     }
     
+=======
+    
+    var localStorageKeyName = 'data';
+    var data = JSON.parse(localStorage.getItem(localStorageKeyName));
+    if (data == null) {
+        data = [];
+    }
+    
+>>>>>>> 3720b81f87d9babe29903e3cf0a8710103705a8f
     data.push(obj);
 
     localStorage.setItem(localStorageKeyName, JSON.stringify(data));
@@ -76,10 +86,15 @@ window.onload = function(){
         tdPhone = document.createElement("td"),
         tdEmail = document.createElement("td"),
         tdComments = document.createElement("td"),
+<<<<<<< HEAD
         tdRemove = document.createElement("td"),
         btnRemove = document.createElement("button");
         tdEdit = document.createElement("td"),
         btnEdit = document.createElement("button");
+=======
+        tdEdit = document.createElement("td"),
+        btnRemove = document.createElement("button");
+>>>>>>> 3720b81f87d9babe29903e3cf0a8710103705a8f
 
         tdName.innerHTML = x.name;
         tdLastname.innerHTML = x.lastname;
@@ -94,6 +109,7 @@ window.onload = function(){
         removeFromLocalStorage(i);
         });
 
+<<<<<<< HEAD
         btnEdit.textContent = 'Editar';
         btnEdit.className = 'btn btn-xs btn-warning';
         btnEdit.addEventListener('click', function(){
@@ -102,6 +118,9 @@ window.onload = function(){
 
         tdRemove.appendChild(btnRemove);
         tdEdit.appendChild(btnEdit);
+=======
+        tdEdit.appendChild(btnRemove);
+>>>>>>> 3720b81f87d9babe29903e3cf0a8710103705a8f
 
         tr.appendChild(tdName);
         tr.appendChild(tdLastname);
@@ -109,11 +128,15 @@ window.onload = function(){
         tr.appendChild(tdPhone);
         tr.appendChild(tdEmail);
         tr.appendChild(tdComments);
+<<<<<<< HEAD
         tr.appendChild(tdRemove);
+=======
+>>>>>>> 3720b81f87d9babe29903e3cf0a8710103705a8f
         tr.appendChild(tdEdit);
 
         gridBody.appendChild(tr);
     });
+<<<<<<< HEAD
 }
 
 function removeFromLocalStorage(index){
@@ -131,10 +154,16 @@ function removeFromLocalStorage(index){
 }
 
 function editFromLocalStorage(index){
+=======
+}
+
+function removeFromLocalStorage(index){
+>>>>>>> 3720b81f87d9babe29903e3cf0a8710103705a8f
     var data = [],
     dataInLocalStorage = localStorage.getItem("data");
 
     data = JSON.parse(dataInLocalStorage);
+<<<<<<< HEAD
 
     document.getElementById("name").value = data[index].name;
     document.getElementById("lastname").value = data[index].lastname;
@@ -143,6 +172,15 @@ function editFromLocalStorage(index){
     document.getElementById("email").value = data[index].email;
     document.getElementById("comments").value = data[index].comments;
     document.getElementById("hdnid").value = data[index].id;
+=======
+
+    data.splice(index, 1);
+
+    localStorage.setItem("data", JSON.stringify(data));
+
+    location.reload();
+
+>>>>>>> 3720b81f87d9babe29903e3cf0a8710103705a8f
 }
 
 function uuidv4() {
